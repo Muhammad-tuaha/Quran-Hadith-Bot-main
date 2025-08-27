@@ -1,9 +1,28 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, Search, Users, Shield } from "lucide-react"
+import { useEffect, useState } from "react"
+import { onAuthStateChanged, signOut, User } from "firebase/auth"
+import { auth } from "@/lib/firebase"
 
 export default function HomePage() {
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+    })
+    return () => unsubscribe()
+  }, [])
+
+  const handleLogout = async () => {
+    await signOut(auth)
+    setUser(null)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted">
       {/* Navigation */}
@@ -15,12 +34,25 @@ export default function HomePage() {
               <span className="text-xl font-serif font-bold">Islamic AI Agent</span>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/login">
-                <Button variant="ghost">Sign In</Button>
-              </Link>
-              <Link href="/signup">
-                <Button>Get Started</Button>
-              </Link>
+              {user ? (
+                <>
+                  <span className="text-sm text-muted-foreground">
+                    {user.displayName || user.email}
+                  </span>
+                  <Button variant="ghost" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login">
+                    <Button variant="ghost">Sign In</Button>
+                  </Link>
+                  <Link href="/signup">
+                    <Button>Get Started</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -47,9 +79,9 @@ export default function HomePage() {
                   Go to Dashboard
                 </Button>
               </Link>
-              <Link href="/search">
+              <Link href="/chat">
                 <Button size="lg" variant="outline">
-                  Start Searching
+                  Start Chating
                 </Button>
               </Link>
             </div>

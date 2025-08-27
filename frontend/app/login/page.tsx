@@ -1,7 +1,8 @@
 "use client"
 
 import type React from "react"
-
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth } from "@/lib/firebase"
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -15,13 +16,30 @@ export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Mock login logic
-    console.log("Login attempt:", { email, password })
-    // Redirect to main app
-    window.location.href = "/"
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      console.log("Logged in:", userCredential.user)
+      window.location.href = "/"
+    } catch (error: any) {
+      alert(error.message)
+    }
   }
+
+  // Google login
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      const result = await signInWithPopup(auth, provider)
+      console.log("Google user:", result.user)
+      window.location.href = "/"
+    } catch (error: any) {
+      alert(error.message)
+    }
+  }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted islamic-pattern flex items-center justify-center p-4">
@@ -111,11 +129,20 @@ export default function LoginPage() {
                   Sign up
                 </Link>
               </div>
+                  <Button
+          type="button"
+          className="w-full bg-red-500 hover:bg-red-600 text-white"
+          onClick={handleGoogleLogin}
+        >
+          Continue with Google
+        </Button>
             </CardFooter>
           </form>
         </Card>
 
         {/* Footer */}
+            
+
         <div className="text-center text-xs text-muted-foreground">
           <p>Seeking knowledge is an obligation upon every Muslim</p>
           <p className="arabic-text text-primary mt-1">طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</p>

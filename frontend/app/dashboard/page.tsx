@@ -67,10 +67,10 @@ export default function DashboardPage() {
               <p className="text-muted-foreground mt-2">Continue your journey of Islamic knowledge</p>
               <div className="arabic-text text-primary text-lg mt-2">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
             </div>
-            <Link href="/search">
+            <Link href="/chat">
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 <Search className="h-4 w-4 mr-2" />
-                Start Searching
+                Start Conversation
               </Button>
             </Link>
           </div>
@@ -87,10 +87,10 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Link href="/search">
+                  <Link href="/chat">
                     <Button variant="outline" className="h-20 flex-col space-y-2 w-full bg-transparent">
                       <Search className="h-6 w-6" />
-                      <span className="text-sm">Search</span>
+                      <span className="text-sm">learn</span>
                     </Button>
                   </Link>
                   <Button variant="outline" className="h-20 flex-col space-y-2 bg-transparent">

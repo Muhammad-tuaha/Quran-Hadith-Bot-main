@@ -1,10 +1,36 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Arabic fonts (fallbacks) */
+@import "@fontsource/scheherazade-new/400.css";  /* Regular */
+@import "@fontsource/scheherazade-new/700.css";  /* Bold */
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+
+/* ✅ Font Utilities (mapped to next/font variables) */
+.font-sans {
+  font-family: var(--font-work-sans), var(--font-open-sans), sans-serif;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic), 'Scheherazade New', 'Amiri', serif;
+  line-height: 2.2;
+}
+
+/* ✅ Arabic-specific text block */
+.arabic-text {
+  font-family: var(--font-arabic), 'Scheherazade New', 'Amiri', serif;
+  direction: rtl;
+  text-align: right;
+  line-height: 2.2;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match Islamic design brief */
+  /* Islamic design tokens */
   --background: #ffffff;
   --foreground: #475569;
   --card: #fdf2f8;
@@ -41,7 +67,6 @@
 }
 
 .dark {
-  /* Updated dark mode tokens to complement the Islamic theme */
   --background: #1e293b;
   --foreground: #f8fafc;
   --card: #334155;
@@ -113,10 +138,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* Added custom font variables for Islamic design */
+
+  /* Custom font vars */
   --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Work Sans", ui-serif, Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+:lang(ar) {
+  font-family: var(--font-arabic), sans-serif;
 }
 
 @layer base {
@@ -126,14 +155,10 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
-  /* Added Islamic calligraphy-inspired decorative elements */
+
+  /* Decorative Islamic pattern */
   .islamic-pattern {
     background-image: radial-gradient(circle at 1px 1px, rgba(190, 18, 60, 0.1) 1px, transparent 0);
     background-size: 20px 20px;
-  }
-  .arabic-text {
-    font-family: "Amiri", "Times New Roman", serif;
-    direction: rtl;
-    text-align: right;
   }
 }
