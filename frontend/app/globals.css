@@ -30,75 +30,75 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Islamic design tokens */
+  /* Islamic design tokens - green theme */
   --background: #ffffff;
   --foreground: #475569;
-  --card: #fdf2f8;
+  --card: #f0fdf4; /* light green card */
   --card-foreground: #475569;
   --popover: #ffffff;
   --popover-foreground: #475569;
-  --primary: #be123c;
+  --primary: #15803d; /* dark green */
   --primary-foreground: #ffffff;
-  --secondary: #ec4899;
+  --secondary: #22c55e; /* green */
   --secondary-foreground: #ffffff;
-  --muted: #f9fafb;
+  --muted: #f6fef6; /* very light green */
   --muted-foreground: #4b5563;
-  --accent: #ec4899;
+  --accent: #22c55e;
   --accent-foreground: #ffffff;
-  --destructive: #be123c;
+  --destructive: #15803d; /* dark green (instead of dark red) */
   --destructive-foreground: #ffffff;
-  --border: #e5e7eb;
-  --input: #f9fafb;
-  --ring: rgba(190, 18, 60, 0.4);
-  --chart-1: #6366f1;
-  --chart-2: #4ade80;
+  --border: #d1fae5; /* light green border */
+  --input: #f6fef6;
+  --ring: rgba(21, 128, 61, 0.4);
+  --chart-1: #10b981;
+  --chart-2: #22c55e;
   --chart-3: #fbbf24;
-  --chart-4: #f87171;
+  --chart-4: #4ade80;
   --chart-5: #60a5fa;
   --radius: 0.5rem;
-  --sidebar: #fdf2f8;
+  --sidebar: #f0fdf4;
   --sidebar-foreground: #475569;
-  --sidebar-primary: #be123c;
+  --sidebar-primary: #15803d;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ec4899;
+  --sidebar-accent: #22c55e;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #e5e7eb;
-  --sidebar-ring: rgba(190, 18, 60, 0.4);
+  --sidebar-border: #d1fae5;
+  --sidebar-ring: rgba(21, 128, 61, 0.4);
 }
 
 .dark {
   --background: #1e293b;
   --foreground: #f8fafc;
-  --card: #334155;
+  --card: #064e3b; /* dark green card */
   --card-foreground: #f8fafc;
   --popover: #1e293b;
   --popover-foreground: #f8fafc;
-  --primary: #f43f5e;
+  --primary: #16a34a; /* green */
   --primary-foreground: #ffffff;
-  --secondary: #f472b6;
+  --secondary: #22c55e;
   --secondary-foreground: #ffffff;
-  --muted: #475569;
+  --muted: #065f46;
   --muted-foreground: #cbd5e1;
-  --accent: #f472b6;
+  --accent: #22c55e;
   --accent-foreground: #ffffff;
-  --destructive: #f43f5e;
+  --destructive: #16a34a;
   --destructive-foreground: #ffffff;
-  --border: #475569;
-  --input: #475569;
-  --ring: rgba(244, 63, 94, 0.4);
-  --chart-1: #6366f1;
-  --chart-2: #4ade80;
+  --border: #065f46;
+  --input: #065f46;
+  --ring: rgba(21, 128, 61, 0.4);
+  --chart-1: #10b981;
+  --chart-2: #22c55e;
   --chart-3: #fbbf24;
-  --chart-4: #f87171;
+  --chart-4: #4ade80;
   --chart-5: #60a5fa;
-  --sidebar: #334155;
+  --sidebar: #064e3b;
   --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #f43f5e;
+  --sidebar-primary: #16a34a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f472b6;
+  --sidebar-accent: #22c55e;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #475569;
-  --sidebar-ring: rgba(244, 63, 94, 0.4);
+  --sidebar-border: #065f46;
+  --sidebar-ring: rgba(21, 128, 61, 0.4);
 }
 
 @theme inline {
@@ -158,7 +158,7 @@
 
   /* Decorative Islamic pattern */
   .islamic-pattern {
-    background-image: radial-gradient(circle at 1px 1px, rgba(190, 18, 60, 0.1) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(21, 128, 61, 0.1) 1px, transparent 0);
     background-size: 20px 20px;
   }
 }

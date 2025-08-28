@@ -75,12 +75,12 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/dashboard">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Button size="lg" variant="outline">
                   Go to Dashboard
                 </Button>
               </Link>
               <Link href="/chat">
-                <Button size="lg" variant="outline">
+                <Button size="lg"  className="bg-primary hover:bg-primary/90">
                   Start Chating
                 </Button>
               </Link>
@@ -114,11 +114,11 @@ export default function HomePage() {
           <Card className="border-border/50">
             <CardHeader>
               <Shield className="h-12 w-12 text-primary mb-4" />
-              <CardTitle className="font-serif">Authentic Sources</CardTitle>
+              <CardTitle className="font-serif">Sources</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Complete Sanad chains, scholarly grading (Sahih, Hasan, Da'if), and verified narrators for each Hadith.
+                Publicly available Quran and hadith datasets were used ,I am not responsible for any wrong information ,app is in developing phase currently.
               </CardDescription>
             </CardContent>
           </Card>
@@ -126,11 +126,12 @@ export default function HomePage() {
           <Card className="border-border/50">
             <CardHeader>
               <BookOpen className="h-12 w-12 text-primary mb-4" />
-              <CardTitle className="font-serif">Comprehensive Database</CardTitle>
+              <CardTitle className="font-serif">limited hadith collection currently approximately 3000 from all books</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Access to major Hadith collections including Bukhari, Muslim, Abu Dawud, Tirmidhi, and more.
+                
+                Access to major Hadith collections including Bukhari, Muslim, Abu Dawud, Tirmidhi, and more. But currently limited ahadith available around 3000
               </CardDescription>
             </CardContent>
           </Card>
@@ -142,6 +143,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent>
               <CardDescription>
+                 |Future idea not yet implemented|
                 Connect with Islamic scholars and researchers worldwide for deeper understanding and verification.
               </CardDescription>
             </CardContent>

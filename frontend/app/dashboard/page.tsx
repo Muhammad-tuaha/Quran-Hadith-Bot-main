@@ -64,8 +64,10 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-serif font-bold text-foreground">Welcome back, Scholar</h1>
-              <p className="text-muted-foreground mt-2">Continue your journey of Islamic knowledge</p>
-              <div className="arabic-text text-primary text-lg mt-2">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+              <p className="text-muted-foreground  mt-2">Continue your journey of Islamic knowledge </p>
+              
+              <p className=" font-bold text-red-500 mt-2">|MOCK PAGE , content in the page is static|</p>
+              <div className="arabic-text text-primary  text-lg mt-2">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
             </div>
             <Link href="/chat">
               <Button size="lg" className="bg-primary hover:bg-primary/90">
@@ -112,7 +114,7 @@ export default function DashboardPage() {
             {/* Recent Searches */}
             <Card className="border-border/50">
               <CardHeader>
-                <CardTitle className="font-serif">Recent Searches</CardTitle>
+                <CardTitle className="font-serif">Recent Searches ||MOCK PAGE||</CardTitle>
                 <CardDescription>Your latest knowledge explorations</CardDescription>
               </CardHeader>
               <CardContent>
