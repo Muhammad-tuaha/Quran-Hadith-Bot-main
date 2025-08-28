@@ -49,7 +49,7 @@ export default function SearchPage() {
     if (!searchQuery.trim() || !userId) return
     setIsSearching(true)
     try {
-      const response = await fetch("http://127.0.0.1:8001/chat", {
+      const response = await fetch("https://tahasoomro-hojadeploy.hf.space/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Question: searchQuery, filter: searchType, userID: userId }),
