@@ -65,7 +65,7 @@ export default function SearchPage() {
     return () => unsubscribe()
   }, [])
 
-  // ⛔ Removed auto-scroll effect
+  //  Removed auto-scroll effect
   // useEffect(() => {
   //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   // }, [messages])
@@ -99,7 +99,9 @@ export default function SearchPage() {
       const activeFilters = Object.keys(filters).filter((key) => filters[key])
 
       const response = await fetch("https://tahasoomro-hojadeploy.hf.space/chat", {
-        method: "POST",
+      // const response = await fetch("http://127.0.0.1:8001/chat", {
+
+      method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           Question: searchQuery,
