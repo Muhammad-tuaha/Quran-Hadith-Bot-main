@@ -222,6 +222,22 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+       <footer className="w-full mt-6 py-4 text-center text-xs text-gray-400 border-t space-y-1">
+        <p>
+          Developed by <span className="font-medium">Muhammad Taha</span>
+        </p>
+        <p>
+          Contact: <a href="mailto:tahasoomro10@gmail.com" className="underline hover:text-gray-600">
+            tahasoomro10@gmail.com
+          </a>
+        </p>
+        <p>
+          LinkedIn: <a href="https://www.linkedin.com/in/muhammad-taha-cs" target="_blank" rel="noopener noreferrer"
+            className="underline hover:text-gray-600">
+            www.linkedin.com/in/muhammad-taha-cs
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }

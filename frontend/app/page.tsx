@@ -152,7 +152,6 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center space-y-4">
             <div className="flex items-center justify-center space-x-2">
@@ -166,6 +165,22 @@ export default function HomePage() {
             </p>
           </div>
         </div>
+         <footer className="w-full mt-6 py-4 text-center text-xs text-gray-400 border-t space-y-1">
+        <p>
+          Developed by <span className="font-medium">Muhammad Taha</span>
+        </p>
+        <p>
+          Contact: <a href="mailto:tahasoomro10@gmail.com" className="underline hover:text-gray-600">
+            tahasoomro10@gmail.com
+          </a>
+        </p>
+        <p>
+          LinkedIn: <a href="https://www.linkedin.com/in/muhammad-taha-cs" target="_blank" rel="noopener noreferrer"
+            className="underline hover:text-gray-600">
+            www.linkedin.com/in/muhammad-taha-cs
+          </a>
+        </p>
+      
       </footer>
     </div>
   )
