@@ -38,18 +38,24 @@ const SOURCES = [
   { value: "ahmed", label: "Musnad Imam Ahmed" },
 ]
 
+// ✅ Prebuilt messages
+const PREBUILT_MESSAGES = [
+  "What is the zakat on silver?",
+  "What Islam says about Khilafat?",
+  "Who was Hazrat Ali?",
+  "Who was Hazrat Ayesha?",
+  "Who was Hazrat Umer?",
+]
+
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [filters, setFilters] = useState<{ [key: string]: boolean }>({
-    Quran: true, // default checked
-    bukhari: false,
-    muslim: false,
-    tirmidhi: false,
-    sunan_nasai: false,
-    ibnmajah: false,
-    malik: false,
-    ahmed: false,
-  })
+  const [filters, setFilters] = useState<{ [key: string]: boolean }>(
+  SOURCES.reduce((acc, src) => {
+    acc[src.value] = true
+    return acc
+  }, {} as { [key: string]: boolean })
+)
+
   const [isSearching, setIsSearching] = useState(false)
   const [messages, setMessages] = useState<any[]>([])
   const [user, setUser] = useState<User | null>(null)
@@ -64,11 +70,6 @@ export default function SearchPage() {
     })
     return () => unsubscribe()
   }, [])
-
-  //  Removed auto-scroll effect
-  // useEffect(() => {
-  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  // }, [messages])
 
   const handleLogout = async () => {
     await signOut(auth)
@@ -85,27 +86,24 @@ export default function SearchPage() {
     setFilters(newFilters)
   }
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!searchQuery.trim() || !userId) return
+  // ✅ Extracted search logic (used for input + prebuilt buttons)
+  const triggerSearch = async (query: string) => {
+    if (!query.trim() || !userId) return
 
-    const userMessage = { type: "user", content: searchQuery }
+    const userMessage = { type: "user", content: query }
     setMessages((prev) => [...prev, userMessage])
     setIsSearching(true)
     setSearchQuery("")
 
     try {
-      // Convert filters object to array of selected sources
       const activeFilters = Object.keys(filters).filter((key) => filters[key])
 
       const response = await fetch("https://tahasoomro-hojadeploy.hf.space/chat", {
-      // const response = await fetch("http://127.0.0.1:8001/chat", {
-
-      method: "POST",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          Question: searchQuery,
-          filters: activeFilters, // only selected sources
+          Question: query,
+          filters: activeFilters,
           userID: userId,
         }),
       })
@@ -122,6 +120,11 @@ export default function SearchPage() {
     } finally {
       setIsSearching(false)
     }
+  }
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    triggerSearch(searchQuery)
   }
 
   return (
@@ -169,7 +172,6 @@ export default function SearchPage() {
         <div className="hidden md:block w-64 border rounded-lg p-4 bg-card h-fit">
           <Label className="mb-2 block">Search In:</Label>
           <div className="space-y-2">
-            {/* All Sources */}
             <div className="flex items-center space-x-2">
               <Checkbox
                 className="border border-black"
@@ -181,7 +183,6 @@ export default function SearchPage() {
                 All Sources
               </label>
             </div>
-            {/* Individual Sources */}
             {SOURCES.map((src) => (
               <div key={src.value} className="flex items-center space-x-2">
                 <Checkbox
@@ -198,37 +199,23 @@ export default function SearchPage() {
           </div>
         </div>
 
-        {/* Dropdown Filters (Mobile) */}
-        <div className="md:hidden mb-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full">
-                Select Sources
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>Sources</DropdownMenuLabel>
-              <DropdownMenuCheckboxItem
-                checked={Object.values(filters).every(Boolean)}
-                onCheckedChange={(checked) => handleAllToggle(Boolean(checked))}
-              >
-                All Sources
-              </DropdownMenuCheckboxItem>
-              {SOURCES.map((src) => (
-                <DropdownMenuCheckboxItem
-                  key={src.value}
-                  checked={filters[src.value]}
-                  onCheckedChange={(checked) => handleFilterChange(src.value, Boolean(checked))}
-                >
-                  {src.label}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
         {/* Chat + Input */}
         <div className="flex-1">
+          {/* ✅ Prebuilt Messages */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {PREBUILT_MESSAGES.map((msg, idx) => (
+              <Button
+                key={idx}
+                variant="outline"
+                size="sm"
+                onClick={() => triggerSearch(msg)}
+                disabled={isSearching}
+              >
+                {msg}
+              </Button>
+            ))}
+          </div>
+
           {/* Chat History */}
           <div className="space-y-4 max-h-[700px] overflow-y-auto border rounded-lg p-5 bg-card text-lg leading-relaxed scrollbar-none">
             {messages.map((msg, i) => (

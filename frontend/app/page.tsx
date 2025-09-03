@@ -81,7 +81,7 @@ export default function HomePage() {
               </Link>
               <Link href="/chat">
                 <Button size="lg"  className="bg-primary hover:bg-primary/90">
-                  Start Chating
+                  Start Chat
                 </Button>
               </Link>
             </div>
@@ -126,12 +126,12 @@ export default function HomePage() {
           <Card className="border-border/50">
             <CardHeader>
               <BookOpen className="h-12 w-12 text-primary mb-4" />
-              <CardTitle className="font-serif">limited hadith collection currently approximately 3000 from all books</CardTitle>
+              <CardTitle className="font-serif">Collection of almost 60000 plus ahadith including some of the most authentic books recognized by muslim scholars such as Sahih al Bukhari ,sahih al muslim ,muwa'ta imam malik, tirmidhi etc</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
                 
-                Access to major Hadith collections including Bukhari, Muslim, Abu Dawud, Tirmidhi, and more. But currently limited ahadith available around 3000
+                Access to major Hadith collections including Bukhari, Muslim, Abu Dawud, Tirmidhi, and more. Few ahadith might be missing.
               </CardDescription>
             </CardContent>
           </Card>
