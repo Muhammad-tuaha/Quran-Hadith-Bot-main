@@ -41,7 +41,7 @@ const SOURCES = [
 // ✅ Prebuilt messages
 const PREBUILT_MESSAGES = [
   "What is the zakat on silver?",
-  "What Islam says about Khilafat?",
+  "Hazrat Abu bakr relation to Muhammad",
   "Who was Hazrat Ali?",
   "Who was Hazrat Ayesha?",
   "Who was Hazrat Umer?",
@@ -169,35 +169,83 @@ export default function SearchPage() {
       {/* Responsive Layout */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 flex flex-col md:flex-row gap-6">
         {/* Sidebar Filters (Desktop) */}
-        <div className="hidden md:block w-64 border rounded-lg p-4 bg-card h-fit">
-          <Label className="mb-2 block">Search In:</Label>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                className="border border-black"
-                checked={Object.values(filters).every(Boolean)}
-                onCheckedChange={(checked) => handleAllToggle(Boolean(checked))}
-                id="all-sources"
-              />
-              <label htmlFor="all-sources" className="text-sm font-medium">
-                All Sources
-              </label>
-            </div>
-            {SOURCES.map((src) => (
-              <div key={src.value} className="flex items-center space-x-2">
-                <Checkbox
-                  className="bg-white border border-gray-300 data-[state=checked]:bg-black data-[state=checked]:text-white"
-                  checked={filters[src.value]}
-                  onCheckedChange={(checked) => handleFilterChange(src.value, Boolean(checked))}
-                  id={src.value}
-                />
-                <label htmlFor={src.value} className="text-sm">
-                  {src.label}
-                </label>
-              </div>
-            ))}
-          </div>
+        {/* Sidebar Filters (Desktop + Mobile) */}
+{/* Desktop: sticky sidebar */}
+<div className="hidden md:block w-64 border rounded-lg p-4 bg-card h-fit sticky top-20 self-start">
+  <Label className="mb-2 block">Search In:</Label>
+  <div className="space-y-2">
+    <div className="flex items-center space-x-2">
+      <Checkbox
+        className="border border-black"
+        checked={Object.values(filters).every(Boolean)}
+        onCheckedChange={(checked) => handleAllToggle(Boolean(checked))}
+        id="all-sources"
+      />
+      <label htmlFor="all-sources" className="text-sm font-medium">
+        All Sources
+      </label>
+    </div>
+    {SOURCES.map((src) => (
+      <div key={src.value} className="flex items-center space-x-2">
+        <Checkbox
+          className="bg-white border border-gray-300 data-[state=checked]:bg-black data-[state=checked]:text-white"
+          checked={filters[src.value]}
+          onCheckedChange={(checked) => handleFilterChange(src.value, Boolean(checked))}
+          id={src.value}
+        />
+        <label htmlFor={src.value} className="text-sm">
+          {src.label}
+        </label>
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* Mobile Filters Dropdown */}
+<div className="block md:hidden mb-4">
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline" className="w-full">
+        Select Filters
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-full">
+      <DropdownMenuLabel>Search In:</DropdownMenuLabel>
+
+      {/* All Sources */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="px-2 py-1 cursor-pointer"
+      >
+        <Checkbox
+          checked={Object.values(filters).every(Boolean)}
+          onCheckedChange={(checked) => {
+            handleAllToggle(Boolean(checked));
+            // Optional: trigger search automatically if needed
+          }}
+        />{" "}
+        <span>All Sources</span>
+      </div>
+
+      {SOURCES.map((src) => (
+        <div
+          key={src.value}
+          onClick={(e) => e.stopPropagation()}
+          className="px-2 py-1 cursor-pointer"
+        >
+          <Checkbox
+            checked={filters[src.value]}
+            onCheckedChange={(checked) => {
+              handleFilterChange(src.value, Boolean(checked));
+              // Optional: trigger search automatically if needed
+            }}
+          />{" "}
+          <span>{src.label}</span>
         </div>
+      ))}
+    </DropdownMenuContent>
+  </DropdownMenu>
+</div>
 
         {/* Chat + Input */}
         <div className="flex-1">
